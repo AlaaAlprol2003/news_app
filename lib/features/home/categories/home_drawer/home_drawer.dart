@@ -3,12 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/core/resources/colors_manager.dart';
 import 'package:news_app/features/home/categories/home_drawer/change_theme_and_lang_widget.dart';
+import 'package:news_app/providers/home_view_provider.dart';
+import 'package:provider/provider.dart';
 
 class HomeDrawer extends StatelessWidget {
-  const HomeDrawer({super.key, required this.goToHome});
-  final void Function() goToHome;
+  const HomeDrawer({super.key});
+  
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<HomeViewProvider>(context);
     return Drawer(
       backgroundColor: ColorsManager.black,
       width: MediaQuery.of(context).size.width * 0.7,
@@ -38,7 +41,7 @@ class HomeDrawer extends StatelessWidget {
                     SizedBox(width: 12.w),
                     TextButton(
                       onPressed: () {
-                        goToHome();
+                        provider.backToHome(context);
                       },
                       child: Text(
                         "Go To Home",
