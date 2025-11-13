@@ -2,14 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/api/api_service.dart';
 import 'package:news_app/api/models/source.dart';
+import 'package:news_app/core/resources/colors_manager.dart';
 import 'package:news_app/features/home/sources/article_item.dart';
+import 'package:news_app/features/home/sources/sources_view_model.dart';
 import 'package:news_app/models/article.dart';
 import 'package:news_app/models/news_category.dart';
 import 'package:news_app/models/news_sources.dart';
+import 'package:provider/provider.dart';
 
-class SourcesView extends StatelessWidget {
-  SourcesView({super.key, required this.category});
+class SourcesView extends StatefulWidget {
+  const SourcesView({super.key, required this.category});
   final NewsCategory category;
+
+  @override
+  State<SourcesView> createState() => _SourcesViewState();
+}
+
+class _SourcesViewState extends State<SourcesView> {
+  SourcesViewModel sourcesViewModel = SourcesViewModel();
+  @override
+  void initState() {
+    super.initState();
+    sourcesViewModel.loadNewsSources(widget.category);
+  }
 
   final List<Article> articles = [
     Article(
@@ -170,36 +185,45 @@ class SourcesView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        FutureBuilder(
-          future: APIService.getNewsSources(category),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(child: CircularProgressIndicator());
-            } else if (snapshot.hasError) {
-              return Center(child: Text(snapshot.error.toString()));
-            }
-            List<Source> sources = snapshot.data?.sources ?? [];
-            return DefaultTabController(
-              length: sources.length,
-              child: TabBar(
-                isScrollable: true,
-                tabs: sources.map((source) => Tab(text: source.name)).toList(),
-              ),
-            );
-          },
-        ),
+    return ChangeNotifierProvider.value(
+      value: sourcesViewModel,
+      child: Column(
+        children: [
+          Consumer<SourcesViewModel>(
+            builder: (context, provider, child) {
+              if (provider.isLoading) {
+                return Center(child: CircularProgressIndicator());
+              }
+              if (provider.errorMessage != null) {
+                return Text(
+                  provider.errorMessage!,
+                  style: TextStyle(color: ColorsManager.white),
+                );
+              }
+              List<Source> sources = provider.newssources;
+              return DefaultTabController(
+                length: sources.length,
 
-        Expanded(
-          child: ListView.separated(
-            itemBuilder: (context, index) =>
-                ArticleItem(article: articles[index]),
-            separatorBuilder: (context, index) => SizedBox(height: 12.h),
-            itemCount: articles.length,
+                child: TabBar(
+                  isScrollable: true,
+
+                  tabs: sources
+                      .map((source) => Tab(text: source.name))
+                      .toList(),
+                ),
+              );
+            },
           ),
-        ),
-      ],
+          Expanded(
+            child: ListView.separated(
+              itemBuilder: (context, index) =>
+                  ArticleItem(article: articles[index]),
+              separatorBuilder: (context, index) => SizedBox(height: 12.h),
+              itemCount: articles.length,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
