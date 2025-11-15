@@ -7,9 +7,9 @@ import 'package:news_app/models/news_category.dart';
 class SourcesViewModel extends ChangeNotifier {
   List<Source> newssources = [];
   bool isLoading = true;
-  String? errorMessage;
+  String errorMessage = "";
 
-  void loadNewsSources(NewsCategory category) async {
+  Future<void> loadNewsSources(NewsCategory category) async {
   
     isLoading = true;
     notifyListeners();

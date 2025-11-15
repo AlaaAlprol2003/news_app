@@ -3,8 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:news_app/api/models/article.dart';
 import 'package:news_app/core/resources/colors_manager.dart';
-import 'package:news_app/models/article.dart';
 
 class ArticleItem extends StatelessWidget {
   const ArticleItem({super.key, required this.article});
@@ -26,33 +26,37 @@ class ArticleItem extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(16.r),
-              child: Image.network(article.urlToImage),
+              child: Image.network(article.urlToImage ?? ""),
             ),
             SizedBox(height: 8.h),
 
             Text(
-              article.description,
+              article.description ?? "",
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             SizedBox(height: 12.h),
 
             Row(
               children: [
-                Text(
-                  article.author,
-                  style: GoogleFonts.inter(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.bold,
-                    color: ColorsManager.grey,
+                Expanded(
+                  child: Text(
+                    article.author ?? "",
+                    style: GoogleFonts.inter(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.bold,
+                      color: ColorsManager.grey,
+                    ),
                   ),
                 ),
                 Spacer(),
-                Text(
-                  article.publishedAt,
-                  style: GoogleFonts.inter(
-                    fontSize: 12.sp,
-                    fontWeight: FontWeight.bold,
-                    color: ColorsManager.grey,
+                Expanded(
+                  child: Text(
+                    article.publishedAt ?? "",
+                    style: GoogleFonts.inter(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.bold,
+                      color: ColorsManager.grey,
+                    ),
                   ),
                 ),
               ],
