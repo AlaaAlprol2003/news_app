@@ -30,11 +30,24 @@ class ThemeManager {
       ),
       unselectedLabelColor: ColorsManager.grey,
     ),
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: ColorsManager.black,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12.r),
+        ),
+        padding: EdgeInsets.all(16),
+        minimumSize: Size(double.infinity, 0),
+      ),
+    ),
+    bottomSheetTheme: BottomSheetThemeData(
+      backgroundColor: ColorsManager.white,
+    ),
     dividerTheme: DividerThemeData(
       color: ColorsManager.white,
       indent: 8.w,
-      endIndent: 8.w
-      ,thickness: 1,
+      endIndent: 8.w,
+      thickness: 1,
     ),
     textTheme: TextTheme(
       bodyMedium: GoogleFonts.inter(
@@ -45,6 +58,11 @@ class ThemeManager {
       headlineLarge: GoogleFonts.inter(
         fontSize: 30.sp,
         fontWeight: FontWeight.bold,
+        color: ColorsManager.black,
+      ),
+      bodySmall: GoogleFonts.inter(
+        fontSize: 14.sp,
+        fontWeight: FontWeight.w500,
         color: ColorsManager.black,
       ),
 
