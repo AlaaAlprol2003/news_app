@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/data/api/models/article.dart';
 import 'package:news_app/core/resources/colors_manager.dart';
+import 'package:news_app/l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ArticleItem extends StatefulWidget {
@@ -24,7 +25,7 @@ class _ArticleItemState extends State<ArticleItem> {
         width: double.infinity,
         margin: REdgeInsets.symmetric(horizontal: 12, vertical: 12),
         decoration: BoxDecoration(
-          border: Border.all(color: ColorsManager.white),
+          border: Border.all(color: Theme.of(context).colorScheme.secondary),
           borderRadius: BorderRadius.circular(16.r),
         ),
 
@@ -80,15 +81,16 @@ class _ArticleItemState extends State<ArticleItem> {
     await showModalBottomSheet(
       context: context,
       useSafeArea: true,
-
+      backgroundColor: Theme.of(context).colorScheme.onSecondary,
       builder: (context) {
+        var appLocalizations = AppLocalizations.of(context)!;
         return Padding(
           padding: REdgeInsets.symmetric(vertical: 12.0, horizontal: 12),
           child: Column(
             children: [
               ClipRRect(
-                borderRadius: BorderRadiusGeometry.circular(16.r),
-                child: Image.network(widget.article.urlToImage ?? ""),
+                borderRadius: BorderRadius.circular(25.r),
+                child: Image.network(widget.article.urlToImage ?? "",),
               ),
               SizedBox(height: 16.h),
               Expanded(
@@ -102,12 +104,8 @@ class _ArticleItemState extends State<ArticleItem> {
                 onPressed: viewFullArticleContent,
 
                 child: Text(
-                  "View Full Articel",
-                  style: GoogleFonts.inter(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.bold,
-                    color: ColorsManager.white,
-                  ),
+                  appLocalizations.view_full_article,
+                  style: Theme.of(context).textTheme.displayMedium,
                 ),
               ),
             ],

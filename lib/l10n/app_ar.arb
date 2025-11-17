@@ -1,0 +1,19 @@
+{
+    "home": "الصفحة الرئيسية",
+    "welcome_message": "صباح الخير، إليك بعض الأخبار لك",
+    "general": "عام",
+    "business": "الأعمال",
+    "entertainment": "الترفيه",
+    "health": "الصحة",
+    "science": "العلوم",
+    "technology": "التكنولوجيا",
+    "sports": "الرياضة",
+    "news_app": "تطبيق الأخبار",
+    "go_to_home": "الانتقال إلى الصفحة الرئيسية",
+    "theme": "السمة",
+    "dark": "داكن",
+    "light": "فاتح",
+    "lanaguge": "اللغة",
+    "view_all": "عرض الكل",
+    "view_full_article": "عرض المقال الكامل"
+}

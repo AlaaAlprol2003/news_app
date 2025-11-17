@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:news_app/core/resources/colors_manager.dart';
+import 'package:news_app/l10n/app_localizations.dart';
 import 'package:news_app/models/news_category.dart';
 import 'package:news_app/providers/home_view_provider.dart';
 import 'package:provider/provider.dart';
@@ -13,13 +13,13 @@ class CategoryItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<HomeViewProvider>(context);
-
+    var appLocalizations = AppLocalizations.of(context)!;
     return Container(
       width: double.infinity,
       height: 230.h,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.r),
-        color: ColorsManager.white,
+        color: Theme.of(context).colorScheme.primary,
       ),
       child: Stack(
         children: [
@@ -43,11 +43,7 @@ class CategoryItem extends StatelessWidget {
                   Text(
                     category.name,
 
-                    style: GoogleFonts.inter(
-                      fontSize: 30.sp,
-                      fontWeight: FontWeight.bold,
-                      color: ColorsManager.black,
-                    ),
+                    style: Theme.of(context).textTheme.bodyLarge,
                   ),
                 ],
               ),
@@ -75,7 +71,7 @@ class CategoryItem extends StatelessWidget {
                         children: [
                            SizedBox(width: 8.w),
                           Text(
-                            "View All",
+                            appLocalizations.view_all,
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         
@@ -87,7 +83,7 @@ class CategoryItem extends StatelessWidget {
                               child: Icon(
                                 index.isOdd
                                     ? Icons.arrow_forward_ios
-                                    : Icons.arrow_back_ios,
+                                    : Icons.arrow_back_ios,color: ColorsManager.grey,
                               ),
                             ),
                           ),
@@ -102,13 +98,13 @@ class CategoryItem extends StatelessWidget {
                               child: Icon(
                                 index.isOdd
                                     ? Icons.arrow_forward_ios
-                                    : Icons.arrow_back_ios,
+                                    : Icons.arrow_back_ios,color: ColorsManager.grey,
                               ),
                             ),
                           ),
                           SizedBox(width: 8.w),
                           Text(
-                            "View All",
+                            appLocalizations.view_all,
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ],

@@ -3,11 +3,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/resources/colors_manager.dart';
 
 class ChangeThemeAndLangWidget extends StatelessWidget {
-  const ChangeThemeAndLangWidget({super.key, required this.label, required this.icon, required this.menuItems, required this.selectedItem});
+  const ChangeThemeAndLangWidget({super.key, required this.label, required this.icon, required this.menuItems, required this.selectedItem,  this.onChanged});
   final String label;
   final String selectedItem;
   final IconData icon;
   final List<String> menuItems;
+  final void Function(String?)? onChanged;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -42,7 +43,7 @@ class ChangeThemeAndLangWidget extends StatelessWidget {
                 items: menuItems.map((item) {
                   return DropdownMenuItem(value: item, child: Text(item));
                 }).toList(),
-                onChanged: (item) {},
+                onChanged: onChanged,
               ),
             ],
           ),

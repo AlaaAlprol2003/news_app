@@ -4,6 +4,7 @@ import 'package:news_app/features/home/sources/source_view.dart';
 import 'package:news_app/models/news_category.dart';
 
 class HomeViewProvider extends ChangeNotifier {
+  
   Widget homeView = CategoriesView();
   String title = "Home";
 
