@@ -15,7 +15,7 @@ class ChangeThemeAndLangWidget extends StatelessWidget {
       children: [
         Row(
           children: [
-            Icon(icon),
+            Icon(icon,color: ColorsManager.white,),
             SizedBox(width: 12.w),
             Text(label, style: Theme.of(context).textTheme.labelMedium),
           ],

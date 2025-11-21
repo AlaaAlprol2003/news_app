@@ -61,7 +61,9 @@ class ThemeManager {
       endIndent: 8.w,
       thickness: 1,
     ),
-     inputDecorationTheme: InputDecorationTheme(
+    inputDecorationTheme: InputDecorationTheme(
+      prefixIconColor: ColorsManager.black,
+      suffixIconColor: ColorsManager.black,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(16.r),
         borderSide: BorderSide(color: ColorsManager.black, width: 1.w),
@@ -149,7 +151,7 @@ class ThemeManager {
       centerTitle: true,
     ),
     iconTheme: IconThemeData(color: ColorsManager.white),
-    
+
     drawerTheme: DrawerThemeData(backgroundColor: ColorsManager.black),
     tabBarTheme: TabBarThemeData(
       tabAlignment: TabAlignment.start,
@@ -188,6 +190,8 @@ class ThemeManager {
       thickness: 1,
     ),
     inputDecorationTheme: InputDecorationTheme(
+      prefixIconColor: ColorsManager.white,
+      suffixIconColor: ColorsManager.white,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(16.r),
         borderSide: BorderSide(color: ColorsManager.white, width: 1.w),

@@ -46,8 +46,8 @@ class HomeDrawer extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Icon(Icons.home_outlined),
-                    SizedBox(width: 12.w),
+                    Icon(Icons.home_outlined, color: ColorsManager.white),
+
                     Expanded(
                       child: TextButton(
                         onPressed: () {
